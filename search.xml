@@ -4,20 +4,44 @@
   
     
     <entry>
-      <title><![CDATA[天雨虽宽 不润无根之草]]></title>
+      <title></title>
+      <url>http://xiaoweiwei.space/2017/02/09/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%932017%E5%B9%B42%E6%9C%886%E6%97%A5/</url>
+      <content type="html"><![CDATA[<h1 id="aop是什么-项目中怎么用"><a href="#aop是什么-项目中怎么用" class="headerlink" title="aop是什么   项目中怎么用"></a>aop是什么   项目中怎么用</h1><p>aop是面向切面编程，利用aop可以对业务逻辑的各个部分进行隔离，从而使各个业务之间的耦合性降低，提高重用性  同时提高了开发的效率。<br>是OOP扩展和延伸，解决OOP中一些问题而出现。AOP采用叫做横向抽取机制取代传统方式纵向继承体系对程序扩展和延伸。<br>在具体的项目中，我们可以在不修改代码的情况下，对程序进行扩展 可以用于对用户的权限校验  日志记录  性能检测  </p>
+<p>Springaop  的底层是动态代理  jdk动态代理  和cglib 动态代理</p>
+<h1 id="sql-优化-平时你注意过那些方面"><a href="#sql-优化-平时你注意过那些方面" class="headerlink" title="sql 优化  平时你注意过那些方面"></a>sql 优化  平时你注意过那些方面</h1><p> 1对关键的字段建立索引<br> 2select子句中避免使用<br> 3尽量使用count<br> 4选择记录条数最少的表作为基础表<br>  in 代替or  </p>
+<h1 id="Struts2-和SpringMVC有什么区别"><a href="#Struts2-和SpringMVC有什么区别" class="headerlink" title="Struts2  和SpringMVC有什么区别"></a>Struts2  和SpringMVC有什么区别</h1><p>springMvc和struts2区别:<br>struts2:<br>    a)struts2的核心控制器是filter<br>    b)接收参数: struts2使用全局类型的成员变量来接收参数,由于全局类型的成员变量是线程不安全,<br>        所以stuts2的action需要配置成多例<br>    c)返回数据: struts2使用值栈</p>
+<p>springMvc:<br>    a)springMvc核心控制器是servlet<br>    b)接收参数: springMvc采用方法级别的局部变量来接收参数, 局部变量用完就销毁, 所以线程安全,<br>        所以springMvc的controller是单例的<br>    c)返回数据: springMvc使用request域</p>
+<h1 id="hibernate-和mybatis有什么区别"><a href="#hibernate-和mybatis有什么区别" class="headerlink" title="hibernate 和mybatis有什么区别"></a>hibernate 和mybatis有什么区别</h1><p>hibernate和mybatis区别:<br>        hibernate: hibernate是一个orm框架, 需要编写hql语句, 自动化程度高, 但是学习成本也要, 使用复杂<br>        但是写代码效率高, 开发速度快.<br>        使用场景: 一般外包公司使用较多, 因为开发速度快. 一些传统项目也在用, oa, crm, erp</p>
+<pre><code> mybatis: mybatis不是一个完全的orm框架, 需要编写sql语句, 学习成本低, 比较简单.
+使用场景: 在互联网企业用用的都, 电商, 互联网金融等
+</code></pre><h1 id="查看tomcat日志的linux命令是什么"><a href="#查看tomcat日志的linux命令是什么" class="headerlink" title="查看tomcat日志的linux命令是什么"></a>查看tomcat日志的linux命令是什么</h1><p>  查看运行日志  tail -f catalina.out<br>  查看最近50行日志  tail -n 50 -f catalina.out<br>  catalina.out  文件在tomcat文件夹下  logs 文件夹下</p>
+<h1 id="怎么理解多态"><a href="#怎么理解多态" class="headerlink" title="怎么理解多态"></a>怎么理解多态</h1><p>多态是java面向对象思想的一种特性</p>
+<p>从字面上理解为 一个类表现出多种的形态 他是一种编程技巧 而不是写代码的格式或者方式<br>子类继承父类的时候 同时继承子类的方法<br>多态的三要素</p>
+<p>继承  方法重写  父类引用指向子类对象</p>
+<h1 id="redis怎么存储对象"><a href="#redis怎么存储对象" class="headerlink" title="redis怎么存储对象"></a>redis怎么存储对象</h1><p>把对象序列化</p>
+<p>jeson util</p>
+<p>redis存储对象<br>五大类型</p>
+<p>String<br>list<br>set<br>sortedset<br>hashmap</p>
+<h1 id="怎么实现系统错误日志记录"><a href="#怎么实现系统错误日志记录" class="headerlink" title="怎么实现系统错误日志记录"></a>怎么实现系统错误日志记录</h1><pre><code>写一个全局的异常处理系统，出现系统错误的时候，面向用户  跳转指定的页面  并且记录错误的日志信息
+</code></pre><p>记录日志信息的是log4j<br>具体的配置  按照文档配置</p>
+<pre><code>a.导入jar包
+b. 在classpath下 新建log4g.properties
+c.然后再写log.java
+</code></pre><h1 id="接口编程"><a href="#接口编程" class="headerlink" title="接口编程"></a>接口编程</h1><h1 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h1><p>amq<br>消息队列<br>java message service </p>
+<p>点对点模式  私聊<br>发布者 订阅者模式  群聊</p>
+<h1 id="怎么实现负载均衡"><a href="#怎么实现负载均衡" class="headerlink" title="怎么实现负载均衡"></a>怎么实现负载均衡</h1><p>利用nginx  实现负载均衡</p>
+<p>nginx  是一个高性能的http服务器  和反向代理服务器  </p>
+<p>三种负载均衡策略</p>
+<p>轮询<br>最少连接<br>ip哈希<br>权重</p>
+<h1 id="负载后怎么实现session共享"><a href="#负载后怎么实现session共享" class="headerlink" title="负载后怎么实现session共享"></a>负载后怎么实现session共享</h1>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[我喜欢你很久了]]></title>
       <url>http://xiaoweiwei.space/2017/02/09/%E6%88%91%E5%96%9C%E6%AC%A2%E4%BD%A0%E5%BE%88%E4%B9%85%E4%BA%86/</url>
       <content type="html"><![CDATA[<p><img src="http://ww2.sinaimg.cn/large/005vGbJ7jw1f671ikpgnhj30s20as0v3.jpg" alt=""></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=229010&auto=1&height=66"></iframe>
 
-
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[天雨虽宽 不润无根之草]]></title>
-      <url>http://xiaoweiwei.space/2017/02/08/%E5%A4%A9%E9%9B%A8%E8%99%BD%E5%AE%BD%EF%BC%8C%E4%B8%8D%E6%B6%A6%E6%97%A0%E6%A0%B9%E4%B9%8B%E8%8D%89/</url>
-      <content type="html"><![CDATA[<p><img src="http://ww2.sinaimg.cn/large/005vGbJ7jw1f671ikpgnhj30s20as0v3.jpg" alt=""></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28310922&auto=1&height=66"></iframe>
 
 ]]></content>
     </entry>
