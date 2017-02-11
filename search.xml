@@ -4,11 +4,11 @@
   
     
     <entry>
-<<<<<<< HEAD
       <title><![CDATA[个人总结]]></title>
       <url>http://xiaoweiwei.space/2017/02/09/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<h1 id="aop是什么-项目中怎么用"><a href="#aop是什么-项目中怎么用" class="headerlink" title="aop是什么   项目中怎么用"></a>aop是什么   项目中怎么用</h1><p>aop是面向切面编程，利用aop可以对业务逻辑的各个部分进行隔离，从而使各个业务之间的耦合性降低，提高重用性  同时提高了开发的效率。<br>是OOP扩展和延伸，解决OOP中一些问题而出现。AOP采用叫做横向抽取机制取代传统方式纵向继承体系对程序扩展和延伸。<br>在具体的项目中，我们可以在不修改代码的情况下，对程序进行扩展 可以用于对用户的权限校验  日志记录  性能检测  </p>
+      <content type="html"><![CDATA[<h2 id="tags-面试"><a href="#tags-面试" class="headerlink" title="tags: 面试"></a>tags: 面试</h2><h2 id="categories-java"><a href="#categories-java" class="headerlink" title="categories: java"></a>categories: java</h2><h1 id="aop是什么-项目中怎么用"><a href="#aop是什么-项目中怎么用" class="headerlink" title="aop是什么   项目中怎么用"></a>aop是什么   项目中怎么用</h1><p>aop是面向切面编程，利用aop可以对业务逻辑的各个部分进行隔离，从而使各个业务之间的耦合性降低，提高重用性  同时提高了开发的效率。<br>是OOP扩展和延伸，解决OOP中一些问题而出现。AOP采用叫做横向抽取机制取代传统方式纵向继承体系对程序扩展和延伸。<br>在具体的项目中，我们可以在不修改代码的情况下，对程序进行扩展 可以用于对用户的权限校验  日志记录  性能检测  </p>
 <p>Springaop  的底层是动态代理  jdk动态代理  和cglib 动态代理</p>
+<a id="more"></a>
 <h1 id="sql-优化-平时你注意过那些方面"><a href="#sql-优化-平时你注意过那些方面" class="headerlink" title="sql 优化  平时你注意过那些方面"></a>sql 优化  平时你注意过那些方面</h1><p> 1对关键的字段建立索引<br> 2select子句中避免使用<br> 3尽量使用count<br> 4选择记录条数最少的表作为基础表<br>  in 代替or  </p>
 <h1 id="Struts2-和SpringMVC有什么区别"><a href="#Struts2-和SpringMVC有什么区别" class="headerlink" title="Struts2  和SpringMVC有什么区别"></a>Struts2  和SpringMVC有什么区别</h1><p>springMvc和struts2区别:<br>struts2:<br>    a)struts2的核心控制器是filter<br>    b)接收参数: struts2使用全局类型的成员变量来接收参数,由于全局类型的成员变量是线程不安全,<br>        所以stuts2的action需要配置成多例<br>    c)返回数据: struts2使用值栈</p>
 <p>springMvc:<br>    a)springMvc核心控制器是servlet<br>    b)接收参数: springMvc采用方法级别的局部变量来接收参数, 局部变量用完就销毁, 所以线程安全,<br>        所以springMvc的controller是单例的<br>    c)返回数据: springMvc使用request域</p>
@@ -44,28 +44,6 @@ c.然后再写log.java
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=229010&auto=1&height=66"></iframe>
 
 
-=======
-      <title><![CDATA[天雨虽宽 不润无根之草]]></title>
-      <url>http://xiaoweiwei.space/2017/02/08/%E5%A4%A9%E9%9B%A8%E8%99%BD%E5%AE%BD%EF%BC%8C%E4%B8%8D%E6%B6%A6%E6%97%A0%E6%A0%B9%E4%B9%8B%E8%8D%89/</url>
-      <content type="html"><![CDATA[<p><img src="http://ww2.sinaimg.cn/large/005vGbJ7jw1f671ikpgnhj30s20as0v3.jpg" alt=""></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28310922&auto=1&height=66"></iframe>
-
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>http://xiaoweiwei.space/2017/02/08/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
->>>>>>> xiaowei
 ]]></content>
     </entry>
     
