@@ -1,0 +1,1078 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web核心," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="对Web开发中的Session和Cookie的一点总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie和Session的对比分析">
+<meta property="og:url" content="http://xiaoweiwei.space/2016/08/08/Session和cookie/index.html">
+<meta property="og:site_name" content="小福点儿">
+<meta property="og:description" content="对Web开发中的Session和Cookie的一点总结">
+<meta property="og:image" content="http://ol64dqiw0.bkt.clouddn.com/timg.jpg">
+<meta property="og:updated_time" content="2017-02-12T15:14:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cookie和Session的对比分析">
+<meta name="twitter:description" content="对Web开发中的Session和Cookie的一点总结">
+<meta name="twitter:image" content="http://ol64dqiw0.bkt.clouddn.com/timg.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xiaoweiwei.space/2016/08/08/Session和cookie/"/>
+
+
+
+
+
+  <title> Cookie和Session的对比分析 | 小福点儿 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小福点儿</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">逗比一枚  人见人爱 花见花开</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xiaoweiwei.space/2016/08/08/Session和cookie/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Mr.Xiao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/11.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小福点儿">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="小福点儿" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cookie和Session的对比分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-08T16:13:31+08:00">
+                2016-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web核心/" itemprop="url" rel="index">
+                    <span itemprop="name">web核心</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/08/08/Session和cookie/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>人
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://ol64dqiw0.bkt.clouddn.com/timg.jpg" alt=""><br><strong>对Web开发中的Session和Cookie的一点总结</strong><br><a id="more"></a></p>
+<h1 id="会话是什么？"><a href="#会话是什么？" class="headerlink" title="会话是什么？"></a>会话是什么？</h1><pre><code>会话：浏览器从打开开始，即为一个会话的开始。
+     一个会话中是存在N次请求。
+      浏览器关闭，即视为一个会话的结束。
+会话---浏览器
+IE浏览器   和  火狐浏览器  分别是两个会话
+会话比喻成：打电话
+        电话接通，会话开启
+        N次的问答交流
+        电话挂断，会话结束
+</code></pre><h1 id="会话技术是什么？有什么用？"><a href="#会话技术是什么？有什么用？" class="headerlink" title="会话技术是什么？有什么用？"></a>会话技术是什么？有什么用？</h1><pre><code>会话技术就是用来保存会话中产生的数据的。
+</code></pre><h1 id="会话技术-保存数据的正常生命周期。"><a href="#会话技术-保存数据的正常生命周期。" class="headerlink" title="会话技术 保存数据的正常生命周期。"></a>会话技术 保存数据的正常生命周期。</h1><pre><code>会话开启时 ---------数据必须都保存起来---------会话结束时
+</code></pre><h1 id="会话技术的种类"><a href="#会话技术的种类" class="headerlink" title="会话技术的种类"></a>会话技术的种类</h1><pre><code>保存在客户端的会话技术：   Cookie
+
+
+保存在服务端的会话技术：   Session
+</code></pre><h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><h1 id="cookie是什么？有什么用？"><a href="#cookie是什么？有什么用？" class="headerlink" title="cookie是什么？有什么用？"></a>cookie是什么？有什么用？</h1><pre><code>Cookie就是服务器写给客户端的一张小纸条。
+
+
+就是用来传递并存储信息。
+
+
+这张小纸条，数据是以键值对的形式保存的
+</code></pre><h1 id="cookie怎么用？"><a href="#cookie怎么用？" class="headerlink" title="cookie怎么用？"></a>cookie怎么用？</h1><pre><code>服务器如何给客户端写cookie
+    Cookie cookie = new Cookie(&quot;cd1hehe&quot;,&quot;zhangsan&quot;);
+
+服务器如果把cookie传递给客户端
+
+    写入响应头
+    //已经过时的方法
+    response.setHeader(&quot;Set-Cookie&quot;, &quot;cd1hehe=zhangsan&quot;);
+    Set-Cookie:cd1hehe=zhangsan
+
+
+    //response的方法    底层自动帮你写Set-Cookie的响应头
+    response.addCookie(cookie);
+</code></pre><h1 id="cookie技术的深入"><a href="#cookie技术的深入" class="headerlink" title="cookie技术的深入"></a>cookie技术的深入</h1><pre><code>浏览器只负责接收 cookie，并且存储cookie，把cookie传递给服务器
+
+服务器负责给浏览器写cookie，并且负责接收cookie并且处理cookie
+
+如何将请求头中的cookie信息在服务器中取到？
+    Cookie:cd1hehe=zhangsan; cd2=zhangsan; cd3=zhangsan
+    request.getHeader(&quot;Cookie&quot;);
+    //自动从请求头中获取cookie信息，并且切割并封装成多个cookie对象
+    request.getCookies();
+    如果请求头中有cookie信息，就获取返回成cookie数组
+    如果请求头中没有cookie信息，直接返回null
+    火狐中管理cookie操作：
+    工具---》选项----》隐私----》移除单个cookie
+</code></pre><h1 id="cookie-常用API操作"><a href="#cookie-常用API操作" class="headerlink" title="cookie 常用API操作"></a>cookie 常用API操作</h1><pre><code>Cookie对象
+    getName();    返回值String，返回的是cookie的名字
+    getValue();   返回值String，返回的是cookie的值
+</code></pre><h1 id="cookie的生命周期"><a href="#cookie的生命周期" class="headerlink" title="cookie的生命周期"></a>cookie的生命周期</h1><pre><code>默认情况下：
+    会话级别cookie，保存在浏览器的缓存中。
+    缓存中的信息，在浏览器关闭时就会销毁。
+    会话开启  -----------（cookie存活）----------会话技术
+特殊情况：
+    持久化cookie，保存在浏览器对应的硬盘上。    
+    setMaxAge();    设置最大生存时间，秒  
+            -1   会话级别的cookie。默认
+            &gt;0   会把cookie持久化保存硬盘上
+                如果cookie过期了，浏览器就不会传递这个cookie了
+            0     立即过期。  相当于删除一个cookie
+</code></pre><hr>
+<h1 id="cookie使用的注意事项"><a href="#cookie使用的注意事项" class="headerlink" title="cookie使用的注意事项"></a>cookie使用的注意事项</h1><pre><code>①cookie保存是有限制的。使用时要尽量谨慎，某些功能不得不依赖cookie，再去使用
+    大小限制：value 最多保存4kb内容。不能向cookie中存储大数据
+    数量限制：一个网站一个项目最多向一个浏览器保存30个cookie。
+          一个浏览器从网络上最多接收300个cookie。                     
+②cookie不仅仅是javaee技术，asp,php,android
+因为cookie是http协议制定
+③cookie不能直接存储中文。
+</code></pre><hr>
+<h1 id="cookie有效路径"><a href="#cookie有效路径" class="headerlink" title="cookie有效路径"></a>cookie有效路径</h1><pre><code>有效路径：浏览器访问什么路径 ，带哪些cookie
+
+
+setPath(String path);   //设置有效路径
+
+
+访问路径 不等于或者不包含 cookie有效路径，cookie不会被带过来的
+
+访问路径 等于或者包含 cookie有效路径，cookie是被带过来了
+
+
+
+有效路径默认：就是你Servlet的访问路径的所在目录
+
+    例如： /cd3            有效路径:/web16/
+           /hehe/cd3       有效路径:/web16/hehe/
+</code></pre><h1 id="cookie唯一标识"><a href="#cookie唯一标识" class="headerlink" title="cookie唯一标识"></a>cookie唯一标识</h1><pre><code>cookie的唯一标识如果相同，那么就是同一个cookie，同一个cookie，新的会覆盖旧的
+唯一标识：域名+路径+cookie名字
+例如：
+cookie1:  http://www.baidu.com/hehe/     cd1
+cookie2:  http://www.taobao.com/hehe/    cd1
+虽然上述两个cookie路径和名字相同，但是域名不同，所以不是一个cookie，会分别保存
+cookie1:  http://www.baidu.com/hehe/     cd1
+cookie2:  http://www.baidu.com/xixi/     cd1
+虽然上述两个cookie域名和名字相同，但是路径不同，所以不是一个cookie，会分别保存
+cookie1:  http://www.baidu.com/hehe/     cd1
+cookie2:  http://www.baidu.com/hehe/     cd2
+虽然上述两个cookie域名和路径相同，但是名字不同，所以不是一个cookie，会分别保存
+cookie1:  http://www.baidu.com/hehe/     cd1
+cookie2:  http://www.baidu.com/hehe/     cd1
+上述两个cookie域名、路径和名字一致的，所以这两个cookie是同一个cookie，会存在覆盖关系
+</code></pre><hr>
+<h1 id="Session是什么？作用？"><a href="#Session是什么？作用？" class="headerlink" title="Session是什么？作用？"></a>Session是什么？作用？</h1><pre><code>session是保存在服务器端的会话技术
+
+就是为了保存会话中产生的数据
+
+session是javaee的规范，只能在javaee中使用
+
+Session是一个域对象，作用范围：针对一次会话有效
+</code></pre><h1 id="session怎么用？"><a href="#session怎么用？" class="headerlink" title="session怎么用？"></a>session怎么用？</h1><pre><code>①获取域对象
+    HttpSession session = request.getSession();
+②使用域对象
+</code></pre><h1 id="如何保证在一次会话中，使用的都是一个session对象。"><a href="#如何保证在一次会话中，使用的都是一个session对象。" class="headerlink" title="如何保证在一次会话中，使用的都是一个session对象。"></a>如何保证在一次会话中，使用的都是一个session对象。</h1><pre><code>用JSESSIONID保证。
+jsessionid保存在会话级别的cookie中
+</code></pre><h1 id="为什么浏览器关闭了，session对象就换了呢？"><a href="#为什么浏览器关闭了，session对象就换了呢？" class="headerlink" title="为什么浏览器关闭了，session对象就换了呢？"></a>为什么浏览器关闭了，session对象就换了呢？</h1><pre><code>会话级别cookie销毁，原先的jsessionid丢失了，就无法对应之前的session对象。
+服务器发现你没有jsessionid，就判断你是第一次来，就会给你再创建一个新的session对象。        
+</code></pre><h1 id="getSession-实现步骤。"><a href="#getSession-实现步骤。" class="headerlink" title="getSession()实现步骤。"></a>getSession()实现步骤。</h1><pre><code>调用getSession方法时，首先判断cookie中是否有jsessionid。
+如果不存在jsessionid，那么直接创建一个新的session对象返回给你，并且向响应头中写一个新的jsessionid的cookie。【相当于第一次来银行创建账户】
+
+如果存在jsessionid,那么还要尝试从服务器内存中去获取session对象。
+如果获取到session对象，直接返回使用。【相当于第二次来银行，用银行卡号操作账户】
+
+如果获取不到session对象，那么直接创建一个新的session对象返回给你，并且向响应头中写一个新的jsessionid的cookie。【创建一个新账户，给一张新卡】
+</code></pre><h1 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h1><pre><code>getSession(true); -----&gt;getSession();
+getSession(false);-----&gt;如果找不到对应的session对象，返回null  【不常用，了解】
+</code></pre><h1 id="session对象的常用API"><a href="#session对象的常用API" class="headerlink" title="session对象的常用API"></a>session对象的常用API</h1><pre><code>String getId();   返回session的  jsessionid    
+invalidate();     主动销毁session对象。【相当于主动去银行销户】
+          一般是不用。
+域对象：
+void setAttribite(String name,Object value)
+String getAttribute()
+void removeAttribute(String name)
+</code></pre><h1 id="session生命周期"><a href="#session生命周期" class="headerlink" title="session生命周期"></a>session生命周期</h1><pre><code>创建：第一次调用getSession();
+销毁：
+    1、主动销毁   invalidate();
+    2、服务器非正常关闭 [断电、强制关机重启、Console---&gt;Terminate] 
+       【服务器正常关闭，之前的数据还存在的。  stop】
+
+    3、session 30分钟自动过期，过期后销毁
+        tomcat/conf/web.xml
+
+          &lt;session-config&gt;
+        &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+           &lt;/session-config&gt;
+</code></pre><h1 id="将jssionid持久化保存"><a href="#将jssionid持久化保存" class="headerlink" title="将jssionid持久化保存"></a>将jssionid持久化保存</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">      HttpSession session = request.getSession();</div><div class="line"></div><div class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"JSESSIONID"</span>,session.getId());</div><div class="line">cookie.setPath(request.getContextPath()+<span class="string">"/"</span>);</div><div class="line">cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>);</div><div class="line">response.addCookie(cookie);</div></pre></td></tr></table></figure>
+<pre><code>#虽然火狐浏览器会写两个头，但是保存的jsessionid已经持久化
+</code></pre><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=26402216&auto=1&height=66"></iframe>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web核心/" rel="tag"># web核心</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/23/solr/" rel="next" title="solr搜索组件">
+                <i class="fa fa-chevron-left"></i> solr搜索组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/11.jpg"
+               alt="Mr.Xiao" />
+          <p class="site-author-name" itemprop="name">Mr.Xiao</p>
+          <p class="site-description motion-element" itemprop="description">人见人爱 花见花开</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofudianer" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/594vv/home?topnav=1&wvr=6" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-chain"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#会话是什么？"><span class="nav-number">1.</span> <span class="nav-text">会话是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#会话技术是什么？有什么用？"><span class="nav-number">2.</span> <span class="nav-text">会话技术是什么？有什么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#会话技术-保存数据的正常生命周期。"><span class="nav-number">3.</span> <span class="nav-text">会话技术 保存数据的正常生命周期。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#会话技术的种类"><span class="nav-number">4.</span> <span class="nav-text">会话技术的种类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-number">5.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie是什么？有什么用？"><span class="nav-number">6.</span> <span class="nav-text">cookie是什么？有什么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie怎么用？"><span class="nav-number">7.</span> <span class="nav-text">cookie怎么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie技术的深入"><span class="nav-number">8.</span> <span class="nav-text">cookie技术的深入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie-常用API操作"><span class="nav-number">9.</span> <span class="nav-text">cookie 常用API操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie的生命周期"><span class="nav-number">10.</span> <span class="nav-text">cookie的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie使用的注意事项"><span class="nav-number">11.</span> <span class="nav-text">cookie使用的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie有效路径"><span class="nav-number">12.</span> <span class="nav-text">cookie有效路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie唯一标识"><span class="nav-number">13.</span> <span class="nav-text">cookie唯一标识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session是什么？作用？"><span class="nav-number">14.</span> <span class="nav-text">Session是什么？作用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session怎么用？"><span class="nav-number">15.</span> <span class="nav-text">session怎么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证在一次会话中，使用的都是一个session对象。"><span class="nav-number">16.</span> <span class="nav-text">如何保证在一次会话中，使用的都是一个session对象。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么浏览器关闭了，session对象就换了呢？"><span class="nav-number">17.</span> <span class="nav-text">为什么浏览器关闭了，session对象就换了呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#getSession-实现步骤。"><span class="nav-number">18.</span> <span class="nav-text">getSession()实现步骤。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展："><span class="nav-number">19.</span> <span class="nav-text">扩展：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session对象的常用API"><span class="nav-number">20.</span> <span class="nav-text">session对象的常用API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session生命周期"><span class="nav-number">21.</span> <span class="nav-text">session生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将jssionid持久化保存"><span class="nav-number">22.</span> <span class="nav-text">将jssionid持久化保存</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Xiao</span>
+</div>
+
+
+<div class="powered-by">
+    小福点儿
+</div>
+
+<div class="theme-info">
+  个人博客 
+  
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次数</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "3ff19f8461634ed39323e31291731125",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+ <script color="155,48,255" opacity='1' zIndex="-1" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>	
+</body>
+</html>
